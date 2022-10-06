@@ -113,7 +113,10 @@ class LiquidationClient:
         if 'message' not in response.data:
             return False
 
-        return (not response.data['message']['check'])
+        check = response.data['message']['check']
+        liquidatable = not check   # if they do not pass the margin check
+
+        return liquidatable
 
     def cancel_open_orders(self, address, underlying=UNDERLYING_ETH):
         r"""If an address is below margin, we can cancel all their open orders.
@@ -138,8 +141,13 @@ class LiquidationClient:
                                 body=body,
                                 timeout=self.timeout,
                                 )
-        data = response.data
-        print(data)
+        if 'message' not in response.data:
+            return {
+                'success': False,
+                'cancelled': [],
+            }
+
+        return response.data['message']
 
     def liquidate(self, address, underlying=UNDERLYING_ETH):
         r"""Liquidate the specified address through the Pareto smart contract.
