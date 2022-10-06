@@ -182,4 +182,6 @@ class LiquidationClient:
         tx_hash = contract.functions.liquidate(address).transact({"from": self.account.address})
 
         # wait for transaction to be mined
-        w3.eth.wait_for_transaction_receipt(tx_hash)
+        receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+
+        return receipt
