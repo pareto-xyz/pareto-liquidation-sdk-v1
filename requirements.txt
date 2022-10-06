@@ -1,0 +1,4 @@
+eth_account==0.5.9
+requests==2.28.1
+setuptools==41.2.0
+web3==5.30.0
