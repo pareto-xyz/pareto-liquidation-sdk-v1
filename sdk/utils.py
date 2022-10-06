@@ -1,4 +1,5 @@
 import requests
+from sdk.errors import ParetoSDKError
 
 
 def create_session():
@@ -66,7 +67,7 @@ def make_request(session,
                                                 timeout=timeout,
                                                 )
     if not str(response.status_code).startswith('2'):
-        raise ParetoAPIError(response)
+        raise ParetoSDKError(response)
 
     if response.content:
         return Response(response.json(), response.headers)
