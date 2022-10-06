@@ -113,7 +113,7 @@ class LiquidationClient:
         if 'message' not in response.data:
             return False
 
-        return response.data['message']['check']
+        return (not response.data['message']['check'])
 
     def cancel_open_orders(self, address, underlying=UNDERLYING_ETH):
         r"""If an address is below margin, we can cancel all their open orders.
