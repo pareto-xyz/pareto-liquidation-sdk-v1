@@ -1,4 +1,4 @@
-# Pareto Liquidation SDK V1
+# Pareto Order Book Liquidation SDK V1
 
 **[Disclaimer: This repository is no longer maintained and is meant for primarily educational purposes.]**
 
